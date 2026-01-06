@@ -1,0 +1,7 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warm solid background - soft peachy coral -->
+  <rect width="1024" height="1024" fill="#F4A261"/>
+  
+  <!-- Small golden semicircle sun peeking up from lower portion -->
+  <circle cx="512" cy="820" r="180" fill="#FCBF49"/>
+</svg>
