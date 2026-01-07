@@ -1,11 +1,12 @@
 import SwiftUI
 import CoreLocation
 
-struct ContentView: View {
+struct SettingsView: View {
     @EnvironmentObject var locationManager: LocationManager
-    @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var userPreferences: UserPreferences
+    @Environment(\.dismiss) var dismiss
 
+    @StateObject private var notificationManager = NotificationManager()
     @State private var showLocationPicker = false
     @State private var previewMessage = ""
 
@@ -83,15 +84,22 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationTitle("Longer Days")
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
             .sheet(isPresented: $showLocationPicker) {
                 LocationPickerView()
                     .environmentObject(locationManager)
             }
             .onAppear {
-                setupPreferencesCallback()
                 updatePreview()
-                requestLocationIfNeeded()
+                scheduleNotification()
             }
             .onChange(of: locationManager.locationName) { _, _ in
                 updatePreview()
@@ -147,26 +155,12 @@ struct ContentView: View {
     // MARK: - Methods
 
     private func validateContentToggles(showDaily: Bool, showCumulative: Bool) {
-        // Ensure at least one is enabled
         if !showDaily && !showCumulative {
-            // Re-enable the one that was just disabled
             if !userPreferences.showDailyChange {
                 userPreferences.showDailyChange = true
             } else {
                 userPreferences.showChangeSinceSolstice = true
             }
-        }
-    }
-
-    private func requestLocationIfNeeded() {
-        if !locationManager.hasLocation {
-            locationManager.requestLocationPermission()
-        }
-    }
-
-    private func setupPreferencesCallback() {
-        userPreferences.onPreferencesChanged = { [self] in
-            scheduleNotification()
         }
     }
 
@@ -194,8 +188,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    SettingsView()
         .environmentObject(LocationManager())
-        .environmentObject(NotificationManager())
         .environmentObject(UserPreferences())
 }

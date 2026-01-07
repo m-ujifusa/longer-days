@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A1000001266B0001000A0001 /* LongerDaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000002266B0001000A0001 /* LongerDaysApp.swift */; };
-		A1000003266B0001000A0001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000004266B0001000A0001 /* ContentView.swift */; };
 		A1000005266B0001000A0001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000006266B0001000A0001 /* Assets.xcassets */; };
 		A1000007266B0001000A0001 /* SolarCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000008266B0001000A0001 /* SolarCalculator.swift */; };
 		A1000009266B0001000A0001 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000A266B0001000A0001 /* LocationManager.swift */; };
@@ -17,11 +16,25 @@
 		A100000F266B0001000A0001 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000010266B0001000A0001 /* UserPreferences.swift */; };
 		A1000011266B0001000A0001 /* SolsticeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000012266B0001000A0001 /* SolsticeInfo.swift */; };
 		A1000013266B0001000A0001 /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000014266B0001000A0001 /* LocationPickerView.swift */; };
+		A1000016266B0001000A0001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000017266B0001000A0001 /* Theme.swift */; };
+		A1000018266B0001000A0001 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000019266B0001000A0001 /* Milestone.swift */; };
+		A100001A266B0001000A0001 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100001B266B0001000A0001 /* MainView.swift */; };
+		A1000050266B0001000A0001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000051266B0001000A0001 /* SettingsView.swift */; };
+		A1000030266B0001000A0001 /* ProgressArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000031266B0001000A0001 /* ProgressArcView.swift */; };
+		A1000032266B0001000A0001 /* HeroNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000033266B0001000A0001 /* HeroNumberView.swift */; };
+		A1000034266B0001000A0001 /* TodayStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000035266B0001000A0001 /* TodayStatsView.swift */; };
+		A1000036266B0001000A0001 /* VelocityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000037266B0001000A0001 /* VelocityView.swift */; };
+		A1000038266B0001000A0001 /* CountdownsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000039266B0001000A0001 /* CountdownsView.swift */; };
+		A100003A266B0001000A0001 /* MilestonesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100003B266B0001000A0001 /* MilestonesView.swift */; };
+		A100003C266B0001000A0001 /* RecentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100003D266B0001000A0001 /* RecentHistoryView.swift */; };
+		A1000060266B0001000A0001 /* SunArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000061266B0001000A0001 /* SunArcView.swift */; };
+		A1000062266B0001000A0001 /* SunriseSunsetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000063266B0001000A0001 /* SunriseSunsetCard.swift */; };
+		A1000064266B0001000A0001 /* MonthlyAveragesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000065266B0001000A0001 /* MonthlyAveragesView.swift */; };
+		A1000066266B0001000A0001 /* CompactHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000067266B0001000A0001 /* CompactHeroView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A1000002266B0001000A0001 /* LongerDaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongerDaysApp.swift; sourceTree = "<group>"; };
-		A1000004266B0001000A0001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000006266B0001000A0001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1000008266B0001000A0001 /* SolarCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarCalculator.swift; sourceTree = "<group>"; };
 		A100000A266B0001000A0001 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -31,7 +44,22 @@
 		A1000012266B0001000A0001 /* SolsticeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolsticeInfo.swift; sourceTree = "<group>"; };
 		A1000014266B0001000A0001 /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
 		A1000015266B0001000A0001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1000017266B0001000A0001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A1000019266B0001000A0001 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		A100001B266B0001000A0001 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A1000051266B0001000A0001 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A1000020266B0001000A0001 /* LongerDays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LongerDays.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1000031266B0001000A0001 /* ProgressArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArcView.swift; sourceTree = "<group>"; };
+		A1000033266B0001000A0001 /* HeroNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNumberView.swift; sourceTree = "<group>"; };
+		A1000035266B0001000A0001 /* TodayStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayStatsView.swift; sourceTree = "<group>"; };
+		A1000037266B0001000A0001 /* VelocityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelocityView.swift; sourceTree = "<group>"; };
+		A1000039266B0001000A0001 /* CountdownsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownsView.swift; sourceTree = "<group>"; };
+		A100003B266B0001000A0001 /* MilestonesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonesView.swift; sourceTree = "<group>"; };
+		A100003D266B0001000A0001 /* RecentHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentHistoryView.swift; sourceTree = "<group>"; };
+		A1000061266B0001000A0001 /* SunArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunArcView.swift; sourceTree = "<group>"; };
+		A1000063266B0001000A0001 /* SunriseSunsetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetCard.swift; sourceTree = "<group>"; };
+		A1000065266B0001000A0001 /* MonthlyAveragesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAveragesView.swift; sourceTree = "<group>"; };
+		A1000067266B0001000A0001 /* CompactHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactHeroView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				A1000002266B0001000A0001 /* LongerDaysApp.swift */,
+				A1000017266B0001000A0001 /* Theme.swift */,
 				A1000024266B0001000A0001 /* Models */,
 				A1000025266B0001000A0001 /* Services */,
 				A1000026266B0001000A0001 /* Views */,
@@ -80,6 +109,7 @@
 				A100000E266B0001000A0001 /* DaylightData.swift */,
 				A1000010266B0001000A0001 /* UserPreferences.swift */,
 				A1000012266B0001000A0001 /* SolsticeInfo.swift */,
+				A1000019266B0001000A0001 /* Milestone.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -97,8 +127,10 @@
 		A1000026266B0001000A0001 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A1000004266B0001000A0001 /* ContentView.swift */,
+				A100001B266B0001000A0001 /* MainView.swift */,
+				A1000051266B0001000A0001 /* SettingsView.swift */,
 				A1000014266B0001000A0001 /* LocationPickerView.swift */,
+				A1000040266B0001000A0001 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,6 +141,24 @@
 				A1000006266B0001000A0001 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A1000040266B0001000A0001 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A1000031266B0001000A0001 /* ProgressArcView.swift */,
+				A1000033266B0001000A0001 /* HeroNumberView.swift */,
+				A1000035266B0001000A0001 /* TodayStatsView.swift */,
+				A1000037266B0001000A0001 /* VelocityView.swift */,
+				A1000039266B0001000A0001 /* CountdownsView.swift */,
+				A100003B266B0001000A0001 /* MilestonesView.swift */,
+				A100003D266B0001000A0001 /* RecentHistoryView.swift */,
+				A1000061266B0001000A0001 /* SunArcView.swift */,
+				A1000063266B0001000A0001 /* SunriseSunsetCard.swift */,
+				A1000065266B0001000A0001 /* MonthlyAveragesView.swift */,
+				A1000067266B0001000A0001 /* CompactHeroView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +189,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					A100001F266B0001000A0001 = {
 						CreatedOnToolsVersion = 15.0;
@@ -181,14 +231,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000001266B0001000A0001 /* LongerDaysApp.swift in Sources */,
-				A1000003266B0001000A0001 /* ContentView.swift in Sources */,
+				A1000016266B0001000A0001 /* Theme.swift in Sources */,
 				A1000007266B0001000A0001 /* SolarCalculator.swift in Sources */,
 				A1000009266B0001000A0001 /* LocationManager.swift in Sources */,
 				A100000B266B0001000A0001 /* NotificationManager.swift in Sources */,
 				A100000D266B0001000A0001 /* DaylightData.swift in Sources */,
 				A100000F266B0001000A0001 /* UserPreferences.swift in Sources */,
 				A1000011266B0001000A0001 /* SolsticeInfo.swift in Sources */,
+				A1000018266B0001000A0001 /* Milestone.swift in Sources */,
+				A100001A266B0001000A0001 /* MainView.swift in Sources */,
+				A1000050266B0001000A0001 /* SettingsView.swift in Sources */,
 				A1000013266B0001000A0001 /* LocationPickerView.swift in Sources */,
+				A1000030266B0001000A0001 /* ProgressArcView.swift in Sources */,
+				A1000032266B0001000A0001 /* HeroNumberView.swift in Sources */,
+				A1000034266B0001000A0001 /* TodayStatsView.swift in Sources */,
+				A1000036266B0001000A0001 /* VelocityView.swift in Sources */,
+				A1000038266B0001000A0001 /* CountdownsView.swift in Sources */,
+				A100003A266B0001000A0001 /* MilestonesView.swift in Sources */,
+				A100003C266B0001000A0001 /* RecentHistoryView.swift in Sources */,
+				A1000060266B0001000A0001 /* SunArcView.swift in Sources */,
+				A1000062266B0001000A0001 /* SunriseSunsetCard.swift in Sources */,
+				A1000064266B0001000A0001 /* MonthlyAveragesView.swift in Sources */,
+				A1000066266B0001000A0001 /* CompactHeroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +294,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 8R247H5M5H;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -254,7 +317,6 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -295,7 +357,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 8R247H5M5H;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -312,7 +373,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -326,6 +386,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 8R247H5M5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LongerDays/Info.plist;
@@ -357,6 +418,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 8R247H5M5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LongerDays/Info.plist;

@@ -8,6 +8,8 @@ struct SolarCalculator {
         let sunrise: Date
         let sunset: Date
         let daylightDuration: TimeInterval
+        let civilDawn: Date?   // First light
+        let civilDusk: Date?   // Last light
 
         var daylightMinutes: Int {
             Int(daylightDuration / 60)
@@ -31,8 +33,12 @@ struct SolarCalculator {
             return nil
         }
 
+        // Calculate civil twilight (sun 6° below horizon)
+        let civilDawn = calculateSunTime(for: date, at: location, timeZone: timeZone, isRising: true, zenithDegrees: 96.0)
+        let civilDusk = calculateSunTime(for: date, at: location, timeZone: timeZone, isRising: false, zenithDegrees: 96.0)
+
         let duration = sunset.timeIntervalSince(sunrise)
-        return DaylightInfo(sunrise: sunrise, sunset: sunset, daylightDuration: duration)
+        return DaylightInfo(sunrise: sunrise, sunset: sunset, daylightDuration: duration, civilDawn: civilDawn, civilDusk: civilDusk)
     }
 
     /// Calculate the change in daylight minutes between two dates
@@ -53,17 +59,71 @@ struct SolarCalculator {
         return current.daylightMinutes - reference.daylightMinutes
     }
 
+    /// Calculate cumulative daylight change in seconds (more precise)
+    static func cumulativeDaylightChangeSeconds(since referenceDate: Date, to currentDate: Date, at location: CLLocationCoordinate2D) -> Int? {
+        guard let reference = calculateDaylight(for: referenceDate, at: location),
+              let current = calculateDaylight(for: currentDate, at: location) else {
+            return nil
+        }
+        return Int(current.daylightDuration - reference.daylightDuration)
+    }
+
+    /// Calculate the daily change in seconds (more precise than minutes)
+    static func dailyChangeSeconds(from previousDate: Date, to currentDate: Date, at location: CLLocationCoordinate2D) -> Int? {
+        guard let previous = calculateDaylight(for: previousDate, at: location),
+              let current = calculateDaylight(for: currentDate, at: location) else {
+            return nil
+        }
+        return Int(current.daylightDuration - previous.daylightDuration)
+    }
+
+    /// Calculate the velocity (rate of change) in seconds per day
+    /// Uses a 3-day average for smoother results
+    static func daylightVelocity(for date: Date, at location: CLLocationCoordinate2D) -> Int? {
+        let calendar = Calendar.current
+        guard let yesterday = calendar.date(byAdding: .day, value: -1, to: date),
+              let tomorrow = calendar.date(byAdding: .day, value: 1, to: date) else {
+            return nil
+        }
+
+        guard let yesterdayInfo = calculateDaylight(for: yesterday, at: location),
+              let tomorrowInfo = calculateDaylight(for: tomorrow, at: location) else {
+            return nil
+        }
+
+        // Average change over 2 days
+        let totalChange = tomorrowInfo.daylightDuration - yesterdayInfo.daylightDuration
+        return Int(totalChange / 2.0)
+    }
+
+    /// Get daylight data for the last N days
+    static func recentHistory(days: Int, endingOn date: Date, at location: CLLocationCoordinate2D) -> [(date: Date, changeSeconds: Int)] {
+        let calendar = Calendar.current
+        var results: [(Date, Int)] = []
+
+        for i in (1...days).reversed() {
+            guard let targetDate = calendar.date(byAdding: .day, value: -i + 1, to: date),
+                  let previousDate = calendar.date(byAdding: .day, value: -1, to: targetDate),
+                  let change = dailyChangeSeconds(from: previousDate, to: targetDate, at: location) else {
+                continue
+            }
+            results.append((targetDate, change))
+        }
+
+        return results
+    }
+
     // MARK: - NOAA Solar Calculation Algorithm
 
     private static func calculateSunrise(for date: Date, at location: CLLocationCoordinate2D, timeZone: TimeZone) -> Date? {
-        return calculateSunTime(for: date, at: location, timeZone: timeZone, isRising: true)
+        return calculateSunTime(for: date, at: location, timeZone: timeZone, isRising: true, zenithDegrees: 90.833)
     }
 
     private static func calculateSunset(for date: Date, at location: CLLocationCoordinate2D, timeZone: TimeZone) -> Date? {
-        return calculateSunTime(for: date, at: location, timeZone: timeZone, isRising: false)
+        return calculateSunTime(for: date, at: location, timeZone: timeZone, isRising: false, zenithDegrees: 90.833)
     }
 
-    private static func calculateSunTime(for date: Date, at location: CLLocationCoordinate2D, timeZone: TimeZone, isRising: Bool) -> Date? {
+    private static func calculateSunTime(for date: Date, at location: CLLocationCoordinate2D, timeZone: TimeZone, isRising: Bool, zenithDegrees: Double = 90.833) -> Date? {
         let calendar = Calendar.current
         let latitude = location.latitude
         let longitude = location.longitude
@@ -88,7 +148,7 @@ struct SolarCalculator {
 
         // Hour angle for sunrise/sunset
         let latRad = latitude * .pi / 180.0
-        let zenith = 90.833 * .pi / 180.0 // Official sunrise/sunset zenith
+        let zenith = zenithDegrees * .pi / 180.0
 
         let cosHA = (cos(zenith) / (cos(latRad) * cos(decl))) - tan(latRad) * tan(decl)
 

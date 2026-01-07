@@ -14,13 +14,14 @@ struct LongerDaysApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
                 .environmentObject(locationManager)
                 .environmentObject(notificationManager)
                 .environmentObject(userPreferences)
                 .onAppear {
                     requestNotificationPermission()
                     scheduleBackgroundRefresh()
+                    locationManager.requestLocationPermission()
                 }
         }
     }

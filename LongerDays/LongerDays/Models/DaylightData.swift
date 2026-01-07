@@ -3,13 +3,17 @@ import CoreLocation
 
 struct DaylightData: Codable {
     let date: Date
-    let daylightMinutes: Int
+    let daylightSeconds: Int
     let sunrise: Date
     let sunset: Date
 
+    var daylightMinutes: Int {
+        daylightSeconds / 60
+    }
+
     var formattedDuration: String {
-        let hours = daylightMinutes / 60
-        let minutes = daylightMinutes % 60
+        let hours = daylightSeconds / 3600
+        let minutes = (daylightSeconds % 3600) / 60
         if hours > 0 {
             return "\(hours) hr \(minutes) min"
         }
@@ -20,32 +24,48 @@ struct DaylightData: Codable {
 // MARK: - Comparison Results
 
 struct DaylightComparison {
-    let dailyChange: Int  // Minutes gained/lost compared to yesterday
-    let cumulativeChange: Int  // Minutes gained/lost since solstice
+    let dailyChangeSeconds: Int  // Seconds gained/lost compared to yesterday
+    let cumulativeChangeSeconds: Int  // Seconds gained/lost since solstice
     let isGainingDaylight: Bool
     let referenceSolstice: Date
     let solsticeType: SolsticeInfo.SolsticeType
 
     var dailyChangeFormatted: String {
-        if dailyChange == 0 {
+        if dailyChangeSeconds == 0 {
             return "Same as yesterday"
-        } else if dailyChange > 0 {
-            return "+\(dailyChange) min today"
+        }
+
+        let absSeconds = abs(dailyChangeSeconds)
+        let minutes = absSeconds / 60
+        let seconds = absSeconds % 60
+
+        let timeString: String
+        if minutes > 0 {
+            timeString = "\(minutes)m \(seconds)s"
         } else {
-            return "\(abs(dailyChange)) fewer minutes today"
+            timeString = "\(seconds)s"
+        }
+
+        if dailyChangeSeconds > 0 {
+            return "+\(timeString) today"
+        } else {
+            return "-\(timeString) today"
         }
     }
 
     var cumulativeChangeFormatted: String {
-        let absChange = abs(cumulativeChange)
-        let hours = absChange / 60
-        let minutes = absChange % 60
+        let absSeconds = abs(cumulativeChangeSeconds)
+        let hours = absSeconds / 3600
+        let minutes = (absSeconds % 3600) / 60
+        let seconds = absSeconds % 60
 
         let timeString: String
         if hours > 0 {
-            timeString = "\(hours) hr \(minutes) min"
+            timeString = "\(hours)h \(minutes)m \(seconds)s"
+        } else if minutes > 0 {
+            timeString = "\(minutes)m \(seconds)s"
         } else {
-            timeString = "\(minutes) min"
+            timeString = "\(seconds)s"
         }
 
         let solsticeMonth = solsticeType == .winter ? "Dec 21" : "Jun 21"
@@ -53,7 +73,7 @@ struct DaylightComparison {
         if isGainingDaylight {
             return "+\(timeString) since \(solsticeMonth)"
         } else {
-            return "\(timeString) shorter since \(solsticeMonth)"
+            return "-\(timeString) since \(solsticeMonth)"
         }
     }
 
@@ -110,7 +130,7 @@ class DaylightDataManager: ObservableObject {
 
         let currentData = DaylightData(
             date: date,
-            daylightMinutes: daylightInfo.daylightMinutes,
+            daylightSeconds: Int(daylightInfo.daylightDuration),
             sunrise: daylightInfo.sunrise,
             sunset: daylightInfo.sunset
         )
@@ -125,13 +145,13 @@ class DaylightDataManager: ObservableObject {
         let calendar = Calendar.current
         let today = current.date
 
-        // Calculate daily change
+        // Calculate daily change in seconds
         let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
-        let dailyChange: Int
+        let dailyChangeSeconds: Int
         if let previousData = previousDayData, calendar.isDate(previousData.date, inSameDayAs: yesterday) {
-            dailyChange = current.daylightMinutes - previousData.daylightMinutes
+            dailyChangeSeconds = current.daylightSeconds - previousData.daylightSeconds
         } else if let yesterdayInfo = SolarCalculator.calculateDaylight(for: yesterday, at: location) {
-            dailyChange = current.daylightMinutes - yesterdayInfo.daylightMinutes
+            dailyChangeSeconds = current.daylightSeconds - Int(yesterdayInfo.daylightDuration)
         } else {
             return nil
         }
@@ -141,28 +161,28 @@ class DaylightDataManager: ObservableObject {
         let (referenceSolstice, solsticeType) = solsticeInfo.mostRecentSolstice(before: today)
         let isGaining = solsticeInfo.season(for: today) == .gainingDaylight
 
-        // Calculate cumulative change since solstice
-        let cumulativeChange: Int
+        // Calculate cumulative change since solstice in seconds
+        let cumulativeChangeSeconds: Int
         if let storedSolsticeData = solsticeData,
            calendar.isDate(storedSolsticeData.date, inSameDayAs: referenceSolstice) {
-            cumulativeChange = current.daylightMinutes - storedSolsticeData.daylightMinutes
+            cumulativeChangeSeconds = current.daylightSeconds - storedSolsticeData.daylightSeconds
         } else if let solsticeDaylight = SolarCalculator.calculateDaylight(for: referenceSolstice, at: location) {
             // Store solstice data for future reference
             let solsticeData = DaylightData(
                 date: referenceSolstice,
-                daylightMinutes: solsticeDaylight.daylightMinutes,
+                daylightSeconds: Int(solsticeDaylight.daylightDuration),
                 sunrise: solsticeDaylight.sunrise,
                 sunset: solsticeDaylight.sunset
             )
             storeSolsticeData(solsticeData)
-            cumulativeChange = current.daylightMinutes - solsticeDaylight.daylightMinutes
+            cumulativeChangeSeconds = current.daylightSeconds - Int(solsticeDaylight.daylightDuration)
         } else {
             return nil
         }
 
         return DaylightComparison(
-            dailyChange: dailyChange,
-            cumulativeChange: cumulativeChange,
+            dailyChangeSeconds: dailyChangeSeconds,
+            cumulativeChangeSeconds: cumulativeChangeSeconds,
             isGainingDaylight: isGaining,
             referenceSolstice: referenceSolstice,
             solsticeType: solsticeType
