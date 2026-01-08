@@ -6,7 +6,8 @@ class NotificationManager: ObservableObject {
     private let notificationCenter = UNUserNotificationCenter.current()
     private let daylightDataManager = DaylightDataManager()
 
-    private let notificationIdentifier = "dailyDaylightNotification"
+    private let notificationIdentifierPrefix = "dailyDaylightNotification"
+    private let daysToScheduleAhead = 7
 
     @Published var isAuthorized: Bool = false
     @Published var lastScheduledDate: Date?
@@ -42,89 +43,83 @@ class NotificationManager: ObservableObject {
     func scheduleNextNotification(preferences: UserPreferences, location: CLLocationCoordinate2D?) async {
         guard let location = location else { return }
 
-        // Cancel any existing notifications
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
+        // Cancel any existing notifications with our prefix
+        let pendingRequests = await notificationCenter.pendingNotificationRequests()
+        let idsToRemove = pendingRequests
+            .filter { $0.identifier.hasPrefix(notificationIdentifierPrefix) }
+            .map { $0.identifier }
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: idsToRemove)
 
         let now = Date()
         let calendar = Calendar.current
 
-        // Determine which day to schedule for
-        var targetDate: Date
-        var notificationDate: Date
+        var firstScheduledDate: Date?
 
-        if preferences.notifyAtSunrise {
-            // For sunrise, always schedule tomorrow's sunrise
-            targetDate = calendar.date(byAdding: .day, value: 1, to: now)!
-            if let daylightInfo = SolarCalculator.calculateDaylight(for: targetDate, at: location) {
-                notificationDate = daylightInfo.sunrise
+        // Schedule notifications for the next 7 days
+        for dayOffset in 1...daysToScheduleAhead {
+            guard let targetDate = calendar.date(byAdding: .day, value: dayOffset, to: now) else { continue }
+
+            // Check if notifications should be paused (summer mode)
+            let solsticeInfo = SolsticeInfo(for: targetDate)
+            if solsticeInfo.shouldPauseForSummer(date: targetDate, summerModeEnabled: preferences.pauseAfterSummerSolstice) {
+                continue
+            }
+
+            // Determine notification time for this day
+            let notificationDate: Date
+            if preferences.notifyAtSunrise {
+                if let daylightInfo = SolarCalculator.calculateDaylight(for: targetDate, at: location) {
+                    notificationDate = daylightInfo.sunrise
+                } else {
+                    continue
+                }
             } else {
-                notificationDate = targetDate
+                let customTime = preferences.customNotificationTime
+                let timeComponents = calendar.dateComponents([.hour, .minute], from: customTime)
+
+                var dayComponents = calendar.dateComponents([.year, .month, .day], from: targetDate)
+                dayComponents.hour = timeComponents.hour
+                dayComponents.minute = timeComponents.minute
+                dayComponents.second = 0
+
+                guard let scheduledTime = calendar.date(from: dayComponents) else { continue }
+                notificationDate = scheduledTime
             }
-        } else {
-            // For custom time, build today's notification time directly
-            let customTime = preferences.customNotificationTime
-            let timeComponents = calendar.dateComponents([.hour, .minute], from: customTime)
 
-            var todayComponents = calendar.dateComponents([.year, .month, .day], from: now)
-            todayComponents.hour = timeComponents.hour
-            todayComponents.minute = timeComponents.minute
-            todayComponents.second = 0
+            // Build content for this specific day
+            guard let content = buildNotificationContent(for: targetDate, at: location, preferences: preferences) else {
+                continue
+            }
 
-            let todayNotificationTime = calendar.date(from: todayComponents) ?? now
+            // Create trigger
+            let triggerComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: notificationDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: false)
 
-            if todayNotificationTime > now {
-                // Schedule for today
-                targetDate = now
-                notificationDate = todayNotificationTime
-            } else {
-                // Schedule for tomorrow
-                targetDate = calendar.date(byAdding: .day, value: 1, to: now)!
-                var tomorrowComponents = calendar.dateComponents([.year, .month, .day], from: targetDate)
-                tomorrowComponents.hour = timeComponents.hour
-                tomorrowComponents.minute = timeComponents.minute
-                tomorrowComponents.second = 0
-                notificationDate = calendar.date(from: tomorrowComponents) ?? targetDate
+            // Create request with unique identifier for each day
+            let identifier = "\(notificationIdentifierPrefix)-\(dayOffset)"
+            let request = UNNotificationRequest(
+                identifier: identifier,
+                content: content,
+                trigger: trigger
+            )
+
+            do {
+                try await notificationCenter.add(request)
+                if firstScheduledDate == nil {
+                    firstScheduledDate = notificationDate
+                }
+            } catch {
+                print("Failed to schedule notification for day \(dayOffset): \(error)")
             }
         }
 
-        // Check if notifications should be paused (summer mode)
-        let solsticeInfo = SolsticeInfo(for: targetDate)
-        if solsticeInfo.shouldPauseForSummer(date: targetDate, summerModeEnabled: preferences.pauseAfterSummerSolstice) {
-            await MainActor.run {
-                lastScheduledDate = nil
-            }
-            return
+        await MainActor.run {
+            lastScheduledDate = firstScheduledDate
         }
 
-        // Calculate notification content
-        guard let content = buildNotificationContent(for: targetDate, at: location, preferences: preferences) else {
-            return
-        }
-
-        // Create trigger
-        let triggerComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: notificationDate)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: false)
-
-        // Create request
-        let request = UNNotificationRequest(
-            identifier: notificationIdentifier,
-            content: content,
-            trigger: trigger
-        )
-
-        let scheduledDate = notificationDate
-        do {
-            try await notificationCenter.add(request)
-            await MainActor.run {
-                lastScheduledDate = scheduledDate
-            }
-
-            // Store today's data for comparison
-            if let todayInfo = daylightDataManager.calculateDaylightInfo(for: now, at: location) {
-                daylightDataManager.storeDaylightData(todayInfo.current)
-            }
-        } catch {
-            print("Failed to schedule notification: \(error)")
+        // Store today's data for comparison
+        if let todayInfo = daylightDataManager.calculateDaylightInfo(for: now, at: location) {
+            daylightDataManager.storeDaylightData(todayInfo.current)
         }
     }
 
@@ -193,7 +188,27 @@ class NotificationManager: ObservableObject {
         return content
     }
 
-    // MARK: - Testing / Preview
+    // MARK: - Debug / Testing
+
+    func getPendingNotificationCount() async -> Int {
+        let pendingRequests = await notificationCenter.pendingNotificationRequests()
+        return pendingRequests.filter { $0.identifier.hasPrefix(notificationIdentifierPrefix) }.count
+    }
+
+    func getPendingNotificationDates() async -> [Date] {
+        let pendingRequests = await notificationCenter.pendingNotificationRequests()
+        let calendar = Calendar.current
+
+        return pendingRequests
+            .filter { $0.identifier.hasPrefix(notificationIdentifierPrefix) }
+            .compactMap { request -> Date? in
+                guard let trigger = request.trigger as? UNCalendarNotificationTrigger else { return nil }
+                return calendar.date(from: trigger.dateComponents)
+            }
+            .sorted()
+    }
+
+    // MARK: - Preview
 
     func generatePreviewMessage(for date: Date, at location: CLLocationCoordinate2D, preferences: UserPreferences) -> String {
         // Check for solstice

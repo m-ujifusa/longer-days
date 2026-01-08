@@ -9,6 +9,7 @@ struct SettingsView: View {
     @StateObject private var notificationManager = NotificationManager()
     @State private var showLocationPicker = false
     @State private var previewMessage = ""
+    @State private var scheduledNotificationCount = 0
 
     var body: some View {
         NavigationView {
@@ -42,6 +43,14 @@ struct SettingsView: View {
                             Text(nextNotification)
                                 .foregroundColor(.secondary)
                         }
+                    }
+
+                    HStack {
+                        Text("Scheduled notifications")
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("\(scheduledNotificationCount) days")
+                            .foregroundColor(.secondary)
                     }
                 } header: {
                     Text("Notification Time")
@@ -100,6 +109,7 @@ struct SettingsView: View {
             .onAppear {
                 updatePreview()
                 scheduleNotification()
+                updateNotificationCount()
             }
             .onChange(of: locationManager.locationName) { _, _ in
                 updatePreview()
@@ -183,6 +193,16 @@ struct SettingsView: View {
                 preferences: userPreferences,
                 location: locationManager.currentLocation
             )
+            await updateNotificationCount()
+        }
+    }
+
+    private func updateNotificationCount() {
+        Task {
+            let count = await notificationManager.getPendingNotificationCount()
+            await MainActor.run {
+                scheduledNotificationCount = count
+            }
         }
     }
 }

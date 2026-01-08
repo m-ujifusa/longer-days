@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,6 @@
 		A1000016266B0001000A0001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000017266B0001000A0001 /* Theme.swift */; };
 		A1000018266B0001000A0001 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000019266B0001000A0001 /* Milestone.swift */; };
 		A100001A266B0001000A0001 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100001B266B0001000A0001 /* MainView.swift */; };
-		A1000050266B0001000A0001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000051266B0001000A0001 /* SettingsView.swift */; };
 		A1000030266B0001000A0001 /* ProgressArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000031266B0001000A0001 /* ProgressArcView.swift */; };
 		A1000032266B0001000A0001 /* HeroNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000033266B0001000A0001 /* HeroNumberView.swift */; };
 		A1000034266B0001000A0001 /* TodayStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000035266B0001000A0001 /* TodayStatsView.swift */; };
@@ -27,11 +26,22 @@
 		A1000038266B0001000A0001 /* CountdownsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000039266B0001000A0001 /* CountdownsView.swift */; };
 		A100003A266B0001000A0001 /* MilestonesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100003B266B0001000A0001 /* MilestonesView.swift */; };
 		A100003C266B0001000A0001 /* RecentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100003D266B0001000A0001 /* RecentHistoryView.swift */; };
+		A1000050266B0001000A0001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000051266B0001000A0001 /* SettingsView.swift */; };
 		A1000060266B0001000A0001 /* SunArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000061266B0001000A0001 /* SunArcView.swift */; };
 		A1000062266B0001000A0001 /* SunriseSunsetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000063266B0001000A0001 /* SunriseSunsetCard.swift */; };
 		A1000064266B0001000A0001 /* MonthlyAveragesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000065266B0001000A0001 /* MonthlyAveragesView.swift */; };
 		A1000066266B0001000A0001 /* CompactHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000067266B0001000A0001 /* CompactHeroView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DBEBEE812F0ED88600093172 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A100002A266B0001000A0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A100001F266B0001000A0001;
+			remoteInfo = LongerDays;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A1000002266B0001000A0001 /* LongerDaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongerDaysApp.swift; sourceTree = "<group>"; };
@@ -47,7 +57,6 @@
 		A1000017266B0001000A0001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A1000019266B0001000A0001 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		A100001B266B0001000A0001 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		A1000051266B0001000A0001 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A1000020266B0001000A0001 /* LongerDays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LongerDays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000031266B0001000A0001 /* ProgressArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArcView.swift; sourceTree = "<group>"; };
 		A1000033266B0001000A0001 /* HeroNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNumberView.swift; sourceTree = "<group>"; };
@@ -56,14 +65,27 @@
 		A1000039266B0001000A0001 /* CountdownsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownsView.swift; sourceTree = "<group>"; };
 		A100003B266B0001000A0001 /* MilestonesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonesView.swift; sourceTree = "<group>"; };
 		A100003D266B0001000A0001 /* RecentHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentHistoryView.swift; sourceTree = "<group>"; };
+		A1000051266B0001000A0001 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A1000061266B0001000A0001 /* SunArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunArcView.swift; sourceTree = "<group>"; };
 		A1000063266B0001000A0001 /* SunriseSunsetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetCard.swift; sourceTree = "<group>"; };
 		A1000065266B0001000A0001 /* MonthlyAveragesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAveragesView.swift; sourceTree = "<group>"; };
 		A1000067266B0001000A0001 /* CompactHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactHeroView.swift; sourceTree = "<group>"; };
+		DBEBEE7D2F0ED88600093172 /* LongerDaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LongerDaysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DBEBEE7E2F0ED88600093172 /* LongerDaysTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LongerDaysTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A100001D266B0001000A0001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBEBEE7A2F0ED88600093172 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -77,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				A1000022266B0001000A0001 /* LongerDays */,
+				DBEBEE7E2F0ED88600093172 /* LongerDaysTests */,
 				A1000023266B0001000A0001 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				A1000020266B0001000A0001 /* LongerDays.app */,
+				DBEBEE7D2F0ED88600093172 /* LongerDaysTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +205,29 @@
 			productReference = A1000020266B0001000A0001 /* LongerDays.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DBEBEE7C2F0ED88600093172 /* LongerDaysTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBEBEE852F0ED88600093172 /* Build configuration list for PBXNativeTarget "LongerDaysTests" */;
+			buildPhases = (
+				DBEBEE792F0ED88600093172 /* Sources */,
+				DBEBEE7A2F0ED88600093172 /* Frameworks */,
+				DBEBEE7B2F0ED88600093172 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBEBEE822F0ED88600093172 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DBEBEE7E2F0ED88600093172 /* LongerDaysTests */,
+			);
+			name = LongerDaysTests;
+			packageProductDependencies = (
+			);
+			productName = LongerDaysTests;
+			productReference = DBEBEE7D2F0ED88600093172 /* LongerDaysTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -188,11 +235,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					A100001F266B0001000A0001 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					DBEBEE7C2F0ED88600093172 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = A100001F266B0001000A0001;
 					};
 				};
 			};
@@ -210,6 +261,7 @@
 			projectRoot = "";
 			targets = (
 				A100001F266B0001000A0001 /* LongerDays */,
+				DBEBEE7C2F0ED88600093172 /* LongerDaysTests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,6 +272,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000005266B0001000A0001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBEBEE7B2F0ED88600093172 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +315,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBEBEE792F0ED88600093172 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DBEBEE822F0ED88600093172 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A100001F266B0001000A0001 /* LongerDays */;
+			targetProxy = DBEBEE812F0ED88600093172 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A100002C266B0001000A0001 /* Debug */ = {
@@ -442,6 +516,50 @@
 			};
 			name = Release;
 		};
+		DBEBEE832F0ED88600093172 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8R247H5M5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MU.LongerDaysTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LongerDays.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LongerDays";
+			};
+			name = Debug;
+		};
+		DBEBEE842F0ED88600093172 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8R247H5M5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MU.LongerDaysTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LongerDays.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LongerDays";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -459,6 +577,15 @@
 			buildConfigurations = (
 				A100002C266B0001000A0001 /* Debug */,
 				A100002D266B0001000A0001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBEBEE852F0ED88600093172 /* Build configuration list for PBXNativeTarget "LongerDaysTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBEBEE832F0ED88600093172 /* Debug */,
+				DBEBEE842F0ED88600093172 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
