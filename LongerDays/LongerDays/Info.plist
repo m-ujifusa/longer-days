@@ -6,12 +6,11 @@
 	<array>
 		<string>com.longerdays.refresh</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Longer Days needs your location to calculate accurate sunrise and sunset times for your area.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
 		<string>processing</string>
+		<string>bluetooth-central</string>
 	</array>
 </dict>
 </plist>
