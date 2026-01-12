@@ -31,6 +31,11 @@
 		A1000062266B0001000A0001 /* SunriseSunsetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000063266B0001000A0001 /* SunriseSunsetCard.swift */; };
 		A1000064266B0001000A0001 /* MonthlyAveragesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000065266B0001000A0001 /* MonthlyAveragesView.swift */; };
 		A1000066266B0001000A0001 /* CompactHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000067266B0001000A0001 /* CompactHeroView.swift */; };
+		DBEBEE902F15497400093172 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEBEE8F2F15497400093172 /* WidgetKit.framework */; };
+		DBEBEE922F15497400093172 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBEBEE912F15497400093172 /* SwiftUI.framework */; };
+		DBEBEEA32F15497500093172 /* LongerDaysWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DBEBEE8D2F15497400093172 /* LongerDaysWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DBEBEEBF2F15524000093172 /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEBEEBE2F15524000093172 /* WidgetData.swift */; };
+		DBEBEEC02F15524000093172 /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEBEEBE2F15524000093172 /* WidgetData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +46,35 @@
 			remoteGlobalIDString = A100001F266B0001000A0001;
 			remoteInfo = LongerDays;
 		};
+		DBEBEEA12F15497500093172 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A100002A266B0001000A0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBEBEE8C2F15497400093172;
+			remoteInfo = LongerDaysWidgetExtension;
+		};
+		DBEBEEC12F1554BD00093172 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A100002A266B0001000A0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBEBEE8C2F15497400093172;
+			remoteInfo = LongerDaysWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DBEBEEA82F15497500093172 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DBEBEEA32F15497500093172 /* LongerDaysWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A1000002266B0001000A0001 /* LongerDaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongerDaysApp.swift; sourceTree = "<group>"; };
@@ -71,10 +104,27 @@
 		A1000065266B0001000A0001 /* MonthlyAveragesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAveragesView.swift; sourceTree = "<group>"; };
 		A1000067266B0001000A0001 /* CompactHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactHeroView.swift; sourceTree = "<group>"; };
 		DBEBEE7D2F0ED88600093172 /* LongerDaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LongerDaysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBEBEE882F15493900093172 /* LongerDays.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LongerDays.entitlements; sourceTree = "<group>"; };
+		DBEBEE8D2F15497400093172 /* LongerDaysWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LongerDaysWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBEBEE8F2F15497400093172 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		DBEBEE912F15497400093172 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		DBEBEEB12F15498C00093172 /* LongerDaysWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LongerDaysWidgetExtension.entitlements; sourceTree = "<group>"; };
+		DBEBEEBE2F15524000093172 /* WidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DBEBEEA42F15497500093172 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DBEBEE8C2F15497400093172 /* LongerDaysWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DBEBEE7E2F0ED88600093172 /* LongerDaysTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LongerDaysTests; sourceTree = "<group>"; };
+		DBEBEE932F15497400093172 /* LongerDaysWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DBEBEEA42F15497500093172 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = LongerDaysWidget; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,14 +142,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBEBEE8A2F15497400093172 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBEBEE922F15497400093172 /* SwiftUI.framework in Frameworks */,
+				DBEBEE902F15497400093172 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		A1000021266B0001000A0001 = {
 			isa = PBXGroup;
 			children = (
+				DBEBEEB12F15498C00093172 /* LongerDaysWidgetExtension.entitlements */,
 				A1000022266B0001000A0001 /* LongerDays */,
 				DBEBEE7E2F0ED88600093172 /* LongerDaysTests */,
+				DBEBEE932F15497400093172 /* LongerDaysWidget */,
+				DBEBEE8E2F15497400093172 /* Frameworks */,
 				A1000023266B0001000A0001 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,6 +169,8 @@
 		A1000022266B0001000A0001 /* LongerDays */ = {
 			isa = PBXGroup;
 			children = (
+				DBEBEEBE2F15524000093172 /* WidgetData.swift */,
+				DBEBEE882F15493900093172 /* LongerDays.entitlements */,
 				A1000002266B0001000A0001 /* LongerDaysApp.swift */,
 				A1000017266B0001000A0001 /* Theme.swift */,
 				A1000024266B0001000A0001 /* Models */,
@@ -123,6 +187,7 @@
 			children = (
 				A1000020266B0001000A0001 /* LongerDays.app */,
 				DBEBEE7D2F0ED88600093172 /* LongerDaysTests.xctest */,
+				DBEBEE8D2F15497400093172 /* LongerDaysWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +250,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		DBEBEE8E2F15497400093172 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBEBEE8F2F15497400093172 /* WidgetKit.framework */,
+				DBEBEE912F15497400093172 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -195,10 +269,13 @@
 				A100001C266B0001000A0001 /* Sources */,
 				A100001D266B0001000A0001 /* Frameworks */,
 				A100001E266B0001000A0001 /* Resources */,
+				DBEBEEA82F15497500093172 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DBEBEEA22F15497500093172 /* PBXTargetDependency */,
+				DBEBEEC22F1554BD00093172 /* PBXTargetDependency */,
 			);
 			name = LongerDays;
 			productName = LongerDays;
@@ -228,6 +305,28 @@
 			productReference = DBEBEE7D2F0ED88600093172 /* LongerDaysTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DBEBEE8C2F15497400093172 /* LongerDaysWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBEBEEA52F15497500093172 /* Build configuration list for PBXNativeTarget "LongerDaysWidgetExtension" */;
+			buildPhases = (
+				DBEBEE892F15497400093172 /* Sources */,
+				DBEBEE8A2F15497400093172 /* Frameworks */,
+				DBEBEE8B2F15497400093172 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DBEBEE932F15497400093172 /* LongerDaysWidget */,
+			);
+			name = LongerDaysWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = LongerDaysWidgetExtension;
+			productReference = DBEBEE8D2F15497400093172 /* LongerDaysWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -244,6 +343,9 @@
 					DBEBEE7C2F0ED88600093172 = {
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = A100001F266B0001000A0001;
+					};
+					DBEBEE8C2F15497400093172 = {
+						CreatedOnToolsVersion = 26.2;
 					};
 				};
 			};
@@ -262,6 +364,7 @@
 			targets = (
 				A100001F266B0001000A0001 /* LongerDays */,
 				DBEBEE7C2F0ED88600093172 /* LongerDaysTests */,
+				DBEBEE8C2F15497400093172 /* LongerDaysWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -282,6 +385,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBEBEE8B2F15497400093172 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -290,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000001266B0001000A0001 /* LongerDaysApp.swift in Sources */,
+				DBEBEEBF2F15524000093172 /* WidgetData.swift in Sources */,
 				A1000016266B0001000A0001 /* Theme.swift in Sources */,
 				A1000007266B0001000A0001 /* SolarCalculator.swift in Sources */,
 				A1000009266B0001000A0001 /* LocationManager.swift in Sources */,
@@ -322,6 +433,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBEBEE892F15497400093172 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBEBEEC02F15524000093172 /* WidgetData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -329,6 +448,16 @@
 			isa = PBXTargetDependency;
 			target = A100001F266B0001000A0001 /* LongerDays */;
 			targetProxy = DBEBEE812F0ED88600093172 /* PBXContainerItemProxy */;
+		};
+		DBEBEEA22F15497500093172 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBEBEE8C2F15497400093172 /* LongerDaysWidgetExtension */;
+			targetProxy = DBEBEEA12F15497500093172 /* PBXContainerItemProxy */;
+		};
+		DBEBEEC22F1554BD00093172 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBEBEE8C2F15497400093172 /* LongerDaysWidgetExtension */;
+			targetProxy = DBEBEEC12F1554BD00093172 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -457,8 +586,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LongerDays/LongerDays.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 8R247H5M5H;
 				ENABLE_PREVIEWS = YES;
@@ -476,7 +606,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ujifusa.longerdays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -490,8 +620,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LongerDays/LongerDays.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 8R247H5M5H;
 				ENABLE_PREVIEWS = YES;
@@ -509,7 +640,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ujifusa.longerdays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -562,6 +693,74 @@
 			};
 			name = Release;
 		};
+		DBEBEEA62F15497500093172 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LongerDaysWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 8R247H5M5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LongerDaysWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LongerDaysWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ujifusa.longerdays.LongerDaysWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DBEBEEA72F15497500093172 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LongerDaysWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 8R247H5M5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LongerDaysWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LongerDaysWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ujifusa.longerdays.LongerDaysWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -588,6 +787,15 @@
 			buildConfigurations = (
 				DBEBEE832F0ED88600093172 /* Debug */,
 				DBEBEE842F0ED88600093172 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBEBEEA52F15497500093172 /* Build configuration list for PBXNativeTarget "LongerDaysWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBEBEEA62F15497500093172 /* Debug */,
+				DBEBEEA72F15497500093172 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

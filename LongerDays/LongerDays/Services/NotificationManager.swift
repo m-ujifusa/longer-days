@@ -7,7 +7,7 @@ class NotificationManager: ObservableObject {
     private let daylightDataManager = DaylightDataManager()
 
     private let notificationIdentifierPrefix = "dailyDaylightNotification"
-    private let daysToScheduleAhead = 7
+    private let maxNotificationsToSchedule = 64 // iOS limit
 
     @Published var isAuthorized: Bool = false
     @Published var lastScheduledDate: Date?
@@ -54,9 +54,13 @@ class NotificationManager: ObservableObject {
         let calendar = Calendar.current
 
         var firstScheduledDate: Date?
+        var scheduledCount = 0
 
-        // Schedule notifications for the next 7 days
-        for dayOffset in 1...daysToScheduleAhead {
+        // Schedule notifications starting from today, up to iOS limit
+        for dayOffset in 0... {
+            // Stop if we've scheduled the maximum allowed
+            guard scheduledCount < maxNotificationsToSchedule else { break }
+
             guard let targetDate = calendar.date(byAdding: .day, value: dayOffset, to: now) else { continue }
 
             // Check if notifications should be paused (summer mode)
@@ -86,6 +90,9 @@ class NotificationManager: ObservableObject {
                 notificationDate = scheduledTime
             }
 
+            // Skip if the notification time has already passed
+            guard notificationDate > now else { continue }
+
             // Build content for this specific day
             guard let content = buildNotificationContent(for: targetDate, at: location, preferences: preferences) else {
                 continue
@@ -96,7 +103,7 @@ class NotificationManager: ObservableObject {
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: false)
 
             // Create request with unique identifier for each day
-            let identifier = "\(notificationIdentifierPrefix)-\(dayOffset)"
+            let identifier = "\(notificationIdentifierPrefix)-\(scheduledCount)"
             let request = UNNotificationRequest(
                 identifier: identifier,
                 content: content,
@@ -105,6 +112,7 @@ class NotificationManager: ObservableObject {
 
             do {
                 try await notificationCenter.add(request)
+                scheduledCount += 1
                 if firstScheduledDate == nil {
                     firstScheduledDate = notificationDate
                 }
@@ -186,26 +194,6 @@ class NotificationManager: ObservableObject {
         content.body = parts.joined(separator: " | ")
 
         return content
-    }
-
-    // MARK: - Debug / Testing
-
-    func getPendingNotificationCount() async -> Int {
-        let pendingRequests = await notificationCenter.pendingNotificationRequests()
-        return pendingRequests.filter { $0.identifier.hasPrefix(notificationIdentifierPrefix) }.count
-    }
-
-    func getPendingNotificationDates() async -> [Date] {
-        let pendingRequests = await notificationCenter.pendingNotificationRequests()
-        let calendar = Calendar.current
-
-        return pendingRequests
-            .filter { $0.identifier.hasPrefix(notificationIdentifierPrefix) }
-            .compactMap { request -> Date? in
-                guard let trigger = request.trigger as? UNCalendarNotificationTrigger else { return nil }
-                return calendar.date(from: trigger.dateComponents)
-            }
-            .sorted()
     }
 
     // MARK: - Preview

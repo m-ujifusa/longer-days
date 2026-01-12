@@ -1,6 +1,7 @@
 import SwiftUI
 import UserNotifications
 import BackgroundTasks
+import WidgetKit
 
 @main
 struct LongerDaysApp: App {
@@ -22,6 +23,7 @@ struct LongerDaysApp: App {
                     requestNotificationPermission()
                     scheduleBackgroundRefresh()
                     locationManager.requestLocationPermission()
+                    refreshWidgetData()
                 }
         }
     }
@@ -56,12 +58,24 @@ struct LongerDaysApp: App {
         }
 
         Task {
+            // Update widget data
+            refreshWidgetData()
+
             await notificationManager.scheduleNextNotification(
                 preferences: userPreferences,
                 location: locationManager.currentLocation
             )
             task.setTaskCompleted(success: true)
         }
+    }
+
+    private func refreshWidgetData() {
+        guard let location = locationManager.currentLocation else { return }
+        SharedDataManager.shared.updateWidgetData(
+            location: location,
+            locationName: locationManager.locationName
+        )
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     private func scheduleBackgroundRefresh() {

@@ -106,6 +106,13 @@ class LocationManager: NSObject, ObservableObject {
         userDefaults.set(location.longitude, forKey: Keys.longitude)
         userDefaults.set(locationName, forKey: Keys.locationName)
         userDefaults.set(isManualLocation, forKey: Keys.isManualLocation)
+
+        // Also save to shared container for widget access
+        SharedDataManager.shared.saveLocation(
+            latitude: location.latitude,
+            longitude: location.longitude,
+            name: locationName
+        )
     }
 
     private func loadSavedLocation() {

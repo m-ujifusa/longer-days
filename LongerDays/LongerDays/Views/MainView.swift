@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreLocation
+import WidgetKit
 
 struct MainView: View {
     @EnvironmentObject var locationManager: LocationManager
@@ -202,6 +203,13 @@ struct MainView: View {
             daysUntilSolstice = solstice.days
             nextSolsticeType = solstice.type
         }
+
+        // Update widget data
+        SharedDataManager.shared.updateWidgetData(
+            location: location,
+            locationName: locationManager.locationName
+        )
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
 }
